@@ -17,9 +17,9 @@ export default function Navbar({ }: Props) {
                 <section className='flex items-center gap-2'>
                     <MdMyLocation className='text-3xl opacity-50 hover:opacity-100 cursor-pointer' />
                     <FaLocationDot className='text-3xl' />
-                    <p className="text-slate-900/90 text-sm"> India </p>
+                    <p className="text-slate-900/90 text-sm"> Gothenburg </p>
                     <div id="search">
-                        <SearchBox />
+                        {/* <SearchBox /> */}
                     </div>
                 </section>
             </div>
