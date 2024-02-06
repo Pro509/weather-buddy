@@ -19,7 +19,7 @@ export default function Navbar({ }: Props) {
                     <FaLocationDot className='text-3xl' />
                     <p className="text-slate-900/90 text-sm"> Gothenburg </p>
                     <div id="search">
-                        {/* <SearchBox /> */}
+                        <SearchBox />
                     </div>
                 </section>
             </div>

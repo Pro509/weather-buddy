@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Navbar from "../components/Navbar";
 import Container from "@/components/Container";
 import WeatherIcon from "../components/WeatherIcon";
@@ -11,8 +10,6 @@ import process from "process";
 import { format } from "date-fns/format";
 import { parseISO } from "date-fns/fp";
 import { getDayOrNightIcon } from "@/utils/getDayOrNight";
-
-// https://api.openweathermap.org/data/2.5/forecast?q=pune&appid=03fb08248e0e476d6262996c22f30175&cnt=56
 
 type WeatherData = {
   cod: string;
@@ -150,6 +147,41 @@ export default function Home() {
                       iconName={getDayOrNightIcon(d.weather[0].icon, d.dt_txt)}
                       description={d.weather[0].description}
                     />
+
+                    <p>{convertKelvin(d.main.temp ?? 290, toCelsius)}º</p>
+                  </div>
+                ))}
+              </div>
+            </Container>
+          </div>
+          <div className="flex flex-row gap-4">
+            <Container className="w-fit justify-center flex-col px-4 items-center">
+              <p className="text-md text-center">
+                {firstData?.weather[0].description}
+              </p>
+              <WeatherIcon
+                iconName={getDayOrNightIcon(
+                  firstData?.weather[0].icon ?? "",
+                  firstData?.dt_txt ?? ""
+                )}
+                description={firstData?.weather[0].description ?? ""}
+              />
+            </Container>
+            <Container className="justify-between overflow-x-auto flex-col px-4 items-center bg-blue-900/90 text-white">
+            <div className="flex gap-10 sm:gap-15 w-full justify-between">
+                {data?.list.map((d, i) => (
+                  <div
+                    key={i}
+                    className="flex flex-col justify-between gap-2 items-center text-xs font-semibold"
+                  >
+                    <p className="whitespace-nowrap">
+                      {format(parseISO(d.dt_txt), "h:mm a")}
+                    </p>
+                    <WeatherIcon
+                      iconName={getDayOrNightIcon(d.weather[0].icon, d.dt_txt)}
+                      description={d.weather[0].description}
+                    />
+
                     <p>{convertKelvin(d.main.temp ?? 290, toCelsius)}º</p>
                   </div>
                 ))}
